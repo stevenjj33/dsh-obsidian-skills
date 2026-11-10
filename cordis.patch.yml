@@ -1,0 +1,12 @@
+# dsh-obsidian-skills — dsh bundle patch
+#
+# Installed with:
+#   dsh plugin --profile <name> add <spec>
+#
+# The loader mounts lib/index.js, which reads every skills/<name>/SKILL.md in
+# this package and registers each one with ctx.skills, so the Obsidian skills
+# appear in the agent's catalog. The reference trees ship alongside each
+# SKILL.md, so relative links inside the skill bodies keep working.
+- insert:
+    - id: dsh-obsidian-skills
+      name: 'dsh-obsidian-skills'

@@ -1,0 +1,55 @@
+{
+  "name": "dsh-obsidian-skills",
+  "version": "0.1.0",
+  "description": "Agent skills for Obsidian, packaged as a DeepSeek Harness plugin bundle. Vendored verbatim from the official repository https://github.com/kepano/obsidian-skills (MIT, Steph Ango) — six skills covering Obsidian Flavored Markdown, Bases, JSON Canvas, the Obsidian CLI, Defuddle and Knap. Documentation only: no CLI binaries are bundled, so obsidian/defuddle/knap must be installed separately by the user.",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "skills",
+    "scripts",
+    "cordis.patch.yml",
+    "skills.manifest.json",
+    "README.md",
+    "README.zh.md",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "deepseek",
+    "dsh",
+    "dsh-plugin",
+    "skill",
+    "agent-skills",
+    "obsidian",
+    "markdown",
+    "bases",
+    "json-canvas",
+    "pkm",
+    "notes"
+  ],
+  "engines": {
+    "node": ">=22.19"
+  },
+  "scripts": {
+    "sync": "node scripts/sync-skills.mjs",
+    "sync:check": "node scripts/sync-skills.mjs --check",
+    "sync:dry": "node scripts/sync-skills.mjs --dry-run",
+    "verify": "node scripts/verify-package.mjs",
+    "pack": "npm pack"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stevenjj33/dsh-obsidian-skills.git"
+  }
+}

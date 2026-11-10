@@ -1,0 +1,73 @@
+dsh-obsidian-skills
+===================
+
+This package bundles agent skill documentation from a third-party project.
+
+Upstream
+--------
+  Project : obsidian-skills
+  Author  : Steph Ango (@kepano)
+  Source  : https://github.com/kepano/obsidian-skills
+  License : MIT
+
+Bundled verbatim under skills/:
+
+  skills/obsidian-markdown/SKILL.md
+  skills/obsidian-markdown/references/PROPERTIES.md
+  skills/obsidian-markdown/references/EMBEDS.md
+  skills/obsidian-markdown/references/CALLOUTS.md
+  skills/obsidian-bases/SKILL.md
+  skills/obsidian-bases/references/FUNCTIONS_REFERENCE.md
+  skills/json-canvas/SKILL.md
+  skills/json-canvas/references/EXAMPLES.md
+  skills/obsidian-cli/SKILL.md
+  skills/defuddle/SKILL.md
+  skills/knap/SKILL.md
+
+These files are reproduced without modification. Wording and structure
+belong to the upstream author. This package does not edit that text or
+claim authorship of it; it only materialises the skills on disk and
+registers them with the DeepSeek Harness skill registry.
+
+Original work in this package
+------------------------------
+  lib/index.js          the Cordis loader that registers the skills
+  scripts/sync-skills.mjs     upstream -> ./skills regeneration
+  scripts/verify-package.mjs  pre-publish checks
+  cordis.patch.yml      dsh bundle patch
+  package.json          package metadata
+  README.md, README.zh.md, skills.manifest.json
+
+  (c) 2026 stevenjj33 — MIT
+
+No binaries are bundled
+-----------------------
+Three of the skills describe how to drive command-line tools (obsidian,
+defuddle, knap). Those tools are NOT included here and are not installed
+by this package. Users install and run them separately.
+
+The upstream MIT license text ships alongside this file as LICENSE.
+
+Upstream MIT copyright notice:
+
+  MIT License
+
+  Copyright (c) 2026 Steph Ango (@kepano)
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
