@@ -2,3 +2,6 @@
 node_modules/
 *.tgz
 *.log
+
+# dshmarket submission payload (kept for the 24h-later PR)
+.market-entry.yml
