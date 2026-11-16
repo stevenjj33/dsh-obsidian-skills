@@ -14,7 +14,8 @@
  *                        (default main)
  *
  * Upstream: https://github.com/kepano/obsidian-skills (MIT, Steph Ango).
- * This script copies skills/<name>/**? verbatim. It never edits upstream text.
+ * This script copies the upstream skill tree verbatim. It never edits upstream text.
+ * The tree is located automatically: skills/, plugins/obsidian/skills/ or plugins/skills/.
  */
 
 import { execFileSync } from 'node:child_process';
@@ -29,6 +30,19 @@ const MANIFEST = join(ROOT, 'skills.manifest.json');
 const UPSTREAM = 'https://github.com/kepano/obsidian-skills';
 const SRC = process.env.OBSIDIAN_SKILLS_SRC || '/tmp/obsidian-skills-src';
 const REF = process.env.OBSIDIAN_SKILLS_REF || 'main';
+
+/**
+ * Upstream moved its skill tree twice: originally <root>/skills, later
+ * <root>/plugins/obsidian/skills. Probe both so the script keeps working
+ * across upstream reorganisations instead of hard-coding one layout.
+ */
+function upstreamSkillsDir(root) {
+  for (const rel of ['skills', 'plugins/obsidian/skills', 'plugins/skills']) {
+    const dir = join(root, rel);
+    if (existsSync(dir)) return dir;
+  }
+  return null;
+}
 
 const argv = new Set(process.argv.slice(2));
 const DRY_RUN = argv.has('--dry-run');
@@ -48,7 +62,7 @@ function walk(dir, base = dir) {
 
 /** Ensure the upstream clone exists; fetch it when missing. */
 function ensureSource() {
-  if (existsSync(join(SRC, 'skills'))) return SRC;
+  if (upstreamSkillsDir(SRC)) return SRC;
   if (DRY_RUN || CHECK) return null;
   console.error(`upstream clone missing at ${SRC}; cloning ${UPSTREAM} (${REF})...`);
   mkdirSync(dirname(SRC), { recursive: true });
@@ -75,11 +89,15 @@ function manifestFor(names, fileCounts) {
 function main() {
   const src = ensureSource();
   if (src === null) {
-    console.error(`missing source: ${SRC}/skills`);
+    console.error(`missing source: no skill tree under ${SRC} (looked for skills/, plugins/obsidian/skills/, plugins/skills/)`);
     process.exit(1);
   }
 
-  const srcSkills = join(src, 'skills');
+  const srcSkills = upstreamSkillsDir(src);
+  if (srcSkills === null) {
+    console.error(`missing source: no skill tree under ${src}`);
+    process.exit(1);
+  }
   const names = readdirSync(srcSkills, { withFileTypes: true })
     .filter((e) => e.isDirectory() && !e.name.startsWith('.'))
     .map((e) => e.name)
