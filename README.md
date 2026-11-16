@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./assets/icon-512.png" alt="dsh-obsidian-skills icon" width="128" height="128">
+</p>
+
 # dsh-obsidian-skills
 
 Agent skills for [Obsidian](https://obsidian.md), packaged as a DeepSeek Harness plugin bundle.

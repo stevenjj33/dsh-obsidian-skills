@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./assets/icon-512.png" alt="dsh-obsidian-skills 图标" width="128" height="128">
+</p>
+
 # dsh-obsidian-skills
 
 Obsidian 的 agent 技能包，封装为 DeepSeek Harness 插件。
